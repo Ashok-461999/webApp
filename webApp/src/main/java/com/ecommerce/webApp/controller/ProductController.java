@@ -4,9 +4,7 @@ import com.ecommerce.webApp.model.Product;
 import com.ecommerce.webApp.service.ProductService;
 import lombok.Data;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -16,13 +14,27 @@ public class ProductController {
     @Autowired
     ProductService prdctService;
 
-    @RequestMapping("/products")
+    @GetMapping ("/products")
     public List<Product> getProducts() {
         return prdctService.getProducts();
     }
-    @RequestMapping("/products/{id}")
+    @GetMapping("/products/{id}")
     public  Product getProductById(@PathVariable int id)
     {
       return  prdctService.getProductById(id);
+    }
+
+    @PostMapping("/products")
+    public String addProduct(@RequestBody Product product)
+    {
+
+       return  prdctService.addProduct(product);
+    }
+
+    @PutMapping("/update")
+    public String updateProduct(@RequestBody Product product)
+    {
+
+        return  prdctService.updateProduct(product);
     }
 }
