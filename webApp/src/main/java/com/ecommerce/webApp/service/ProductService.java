@@ -48,4 +48,17 @@ public class ProductService {
 
     }
 
+    public String deleteProduct(int id) {
+        int index =0;
+        for(int i=0 ; i<products.size();i++)
+        {
+            if(products.get(i).getProdId()==id)
+            {
+                index =i;
+            }
+        }
+        products.remove(index);
+
+        return "Sucess";
+    }
 }
